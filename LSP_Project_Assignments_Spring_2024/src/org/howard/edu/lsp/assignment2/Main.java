@@ -1,0 +1,68 @@
+package org.howard.edu.lsp.assignment2;
+
+import java.io.File;
+import java.net.URL;
+
+/*
+ * Name: Claude Cockfield 
+ */
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Logger logger = new Logger(Main.class.getName());
+
+		URL path = Main.class.getResource(_filename);
+		
+		File f = new File(path.getFile());
+
+		String filename = f.getPath();
+		
+		logger.info("current directory is '",
+				System.getProperty("user.dir"),
+				"'",
+				Logger._NEWLINE);
+
+		logger.info("using filename '", 
+				filename, 
+				'\'',
+				Logger._NEWLINE);
+
+		Cache cache = new Cache(filename);
+
+		if (!cache.ok()) {
+			logger.error("cache create failed!");
+			System.exit(1);
+		}
+
+		logger.info("successfully loaded the following text from file.", 
+				Logger._NEWLINE, 
+				Logger._NEWLINE,
+				cache.data(),
+				Logger._NEWLINE);
+
+		Aggregator aggregator = new Aggregator(cache.data());
+
+		if (!aggregator.ok()) {
+			logger.error("aggregator failed!");
+			System.exit(1);
+		}
+
+		long width = aggregator.widest() + _padding;
+		
+		logger.info("results.", 
+				Logger._NEWLINE);
+		
+		aggregator.aggregates().entrySet().
+		stream().
+		sorted((x1, x2) -> x1.getKey().compareTo(x2.getKey())).
+		forEach(e-> System.out.println(String.
+				format("%-" + width + "s", e.getKey()) + e.getValue()));
+	}
+	
+	final private static int _padding = 2;
+
+	final private static String _filename = "words.txt";
+}
+

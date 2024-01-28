@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
-	// logger allows for easy logging of non-trvial types.
+	// logger for easier logging of multi-part log statements and non-trvial objects.
 	
 	public Logger(String name) {
 		_prefixes = new String[] { " " + name + "[error]: ", 

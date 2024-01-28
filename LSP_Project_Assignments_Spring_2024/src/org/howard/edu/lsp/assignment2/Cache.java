@@ -14,15 +14,17 @@ public class Cache {
 
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))) {
 
-			String line;
+			String line = bufferedReader.readLine();
 
-			while ((line = bufferedReader.readLine()) != null) {
-
-				if (!buffer.isEmpty()) {
-					buffer.append(Logger._NEWLINE);
-				}
-
+			while (line != null) {
 				buffer.append(line);
+								
+				if ((line = bufferedReader.readLine()) != null) {
+					buffer.append(Logger._NEWLINE);
+					continue;
+				}	
+				
+				break;
 			}
 
 			_data = buffer.toString();
