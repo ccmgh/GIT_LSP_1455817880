@@ -10,8 +10,9 @@ public class Aggregator {
 
 		_aggregates = 
 				Arrays.stream(data.split(_alnum)).
-				filter(x -> { if (x.length() > _widest) _widest = x.length(); 
-					return x.length() > _length && !Aggregator.numeric(x); }).
+				filter(x -> { return !Aggregator.numeric(x); }).
+				map(x -> x.matches(_prefixed) ? x.replaceAll("^[0-9]+", "") : x).  
+				filter(x -> { if (x.length() > _widest) _widest = x.length(); return x.length() > _length; }).
 				map(x -> x.matches(_capital) ? x.toLowerCase() : x).  
 				collect(Collectors.groupingBy(
 						x -> x,
@@ -35,7 +36,7 @@ public class Aggregator {
 	// put here instead of inline pattern match for more flexibility going forward 
 	// for changing definition of 'numeric'.
 	private static boolean numeric(String s) { 
-		return s.matches(_number);
+		return s.matches(_number); 
 	}
 
 	private long _widest = 0;
@@ -51,6 +52,8 @@ public class Aggregator {
 	final private static String _alnum = "\\P{Alnum}+"; 
 
 	final private static String _capital = "^.*[A-Z].*$";
+
+	final private static String _prefixed = "[0-9]+.*$";
 
 	final private static String _number = "^[0-9]+$";
 
