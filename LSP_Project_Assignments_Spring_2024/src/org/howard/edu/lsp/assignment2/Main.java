@@ -13,23 +13,17 @@ public class Main {
 		
 		Logger logger = new Logger(Main.class.getName());
 
-		URL path = Main.class.getResource(_filename);
-		
-		File f = new File(path.getFile());
-
-		String filename = f.getPath();
-		
 		logger.info("current directory is '",
 				System.getProperty("user.dir"),
 				"'",
 				Logger._NEWLINE);
-
-		logger.info("using filename '", 
-				filename, 
+		
+		logger.info("using file '", 
+				_filepath, 
 				'\'',
 				Logger._NEWLINE);
 
-		Cache cache = new Cache(filename);
+		Cache cache = new Cache(_filepath);
 
 		if (!cache.ok()) {
 			logger.error("cache create failed!");
@@ -63,6 +57,6 @@ public class Main {
 	
 	final private static int _padding = 2;
 
-	final private static String _filename = "words.txt";
+	final private static String _filepath = "src/org/howard/edu/lsp/assignment2/words.txt";
 }
 

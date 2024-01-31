@@ -8,11 +8,11 @@ public class Cache {
 
 	// cache loads the file using buffered line reading. fills back in
 	// newlines for later processing.
-	public Cache(String filename) {
+	public Cache(String filepath) {
 
 		StringBuilder buffer = new StringBuilder();
 
-		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))) {
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath))) {
 
 			String line = bufferedReader.readLine();
 
