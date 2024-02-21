@@ -333,7 +333,7 @@ public class IntegerSet {
   public String toString() {
     StringBuilder buffer = new StringBuilder();
   
-    buffer.append("{");
+    buffer.append("[");
     
     for (Integer item : _set) {
       if (buffer.length() > 1) {
@@ -342,7 +342,7 @@ public class IntegerSet {
       buffer.append(item);
     }
     
-    buffer.append("}");
+    buffer.append("]");
   
     return buffer.toString();
   }
