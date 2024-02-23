@@ -93,8 +93,8 @@ public class IntegerSet {
 
         while (iB < setB._set.size()) {
 
-          if (setB._set.get(iB) == this_copy.get(i)) {
-
+          if (setB._set.get(iB).intValue() == this_copy.get(i)) {
+            
             iB++;
 
           } else if (setB._set.get(iB) > this_copy.get(i)) {
@@ -156,7 +156,7 @@ public class IntegerSet {
 
         while (i < _set.size()) {
 
-          if (_set.get(i) == setB._set.get(iB)) {
+          if (_set.get(i).intValue() == setB._set.get(iB)) {
 
             _set.remove(i);
 
@@ -201,7 +201,7 @@ public class IntegerSet {
     }
 
     for (int i = 0; i < this.length(); i++) {
-      if (other._set.get(i) != this._set.get(i)) {
+      if (other._set.get(i).intValue() != this._set.get(i)) {
         return false;
       }
     }
@@ -237,7 +237,7 @@ public class IntegerSet {
 
         while (i < _set.size()) {
 
-          if (_set.get(i) == setB._set.get(iB)) {
+          if (_set.get(i).intValue() == setB._set.get(iB)) {
 
             i++;
 
@@ -375,7 +375,7 @@ public class IntegerSet {
 
         while (i < _set.size()) {
 
-          if (_set.get(i) == setB._set.get(iB)) {
+          if (_set.get(i).intValue() == setB._set.get(iB)) {
 
             break;
 
